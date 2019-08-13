@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class BibliotecaApp {
 
-    static Biblioteca biblioteca;
+    private static Biblioteca biblioteca;
 
     public static void main(String[] args) {
 
