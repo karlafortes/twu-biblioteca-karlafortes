@@ -14,29 +14,33 @@ public class BibliotecaApp {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!");
-        System.out.println();
-        System.out.println("Choose the number of the option would like to do:");
-        System.out.println();
-        System.out.println("1. List all books");
-        System.out.println();
-        int option = scanner.nextInt();
 
-        if(option == 1){
+        int option;
 
-            ListBook();
-        } else {
-            System.out.println();
-            System.out.println("Please, select a valid option!");
-        }
+        do {
+            System.out.println("\nChoose the number of the option would like to do:");
+            System.out.println("\n1. List all books");
+            System.out.println("2. Exit\n");
+            option = scanner.nextInt();
+
+            switch(option) {
+                case 1:
+                    ListBook();
+                    break;
+                case 2:
+                    break;
+                default:
+                    System.out.println("\nPlease, select a valid option!");
+            }
+
+        } while (option != 2);
     }
 
     public static void ListBook(){
 
         List<Book> books = biblioteca.getBooks();
 
-        System.out.println();
-        System.out.println("This list contains all of our awesome books. Check it out:");
-        System.out.println();
+        System.out.println("\nThis list contains all of our awesome books. Check it out:\n");
 
         for (Book book:books) {
             System.out.printf("| %s | %s | %s |%n", book.getTitle(), book.getAuthor(), book.getYear());
