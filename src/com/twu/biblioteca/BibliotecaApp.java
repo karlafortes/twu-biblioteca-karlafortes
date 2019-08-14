@@ -25,7 +25,11 @@ public class BibliotecaApp {
 
             switch(option) {
                 case 1:
-                    ListBook();
+                    listBook();
+                    System.out.println("\nWould you like to checkout a book? (s/n)");
+                    String checkout = scanner.next();
+                    if(checkout.equals("s"))
+                        checkoutBook();
                     break;
                 case 2:
                     break;
@@ -36,14 +40,25 @@ public class BibliotecaApp {
         } while (option != 2);
     }
 
-    public static void ListBook(){
+    public static void listBook(){
 
         List<Book> books = biblioteca.getBooks();
 
         System.out.println("\nThis list contains all of our awesome books. Check it out:\n");
 
         for (Book book:books) {
-            System.out.printf("| %s | %s | %s |%n", book.getTitle(), book.getAuthor(), book.getYear());
+            if(book.isAvailable())
+                System.out.printf("| %s | %s | %s | %s |%n", book.getReference(), book.getTitle(), book.getAuthor(), book.getYear());
         }
+    }
+
+    public static void checkoutBook(){
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("\nPlease, inform the reference of the book you want to checkout:");
+        int reference = scanner.nextInt();
+
+        biblioteca.CheckoutBook(reference);
     }
 }
