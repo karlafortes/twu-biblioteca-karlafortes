@@ -3,18 +3,19 @@ package com.twu.biblioteca;
 import org.junit.Before;
 import org.junit.Test;
 
-import static com.sun.org.apache.xerces.internal.util.PropertyState.is;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.*;
+
 import java.util.List;
 
 public class BibliotecaTest {
 
     private Biblioteca biblioteca;
+    private List<Book> books;
 
     @Before
     public void setUp() {
         biblioteca = new Biblioteca();
+        books = biblioteca.getBooks();
     }
 
 
@@ -29,22 +30,35 @@ public class BibliotecaTest {
     @Test
     public void checkoutBook() {
 
-        biblioteca.CheckoutBook(3);
-        List<Book> books = biblioteca.getBooks();
-
-        Book checkedoutBook = books.stream().
-                filter(book -> book.getReference() == 3).
-                findFirst().get();
+        biblioteca.checkoutBook(3);
+        Book checkedoutBook = getBookByReference(3);
 
         //assertThat(checkedoutBook, not(checkedoutBook.isAvailable()));
         assertFalse(checkedoutBook.isAvailable());
     }
 
+    @Test
+    public void shouldMakeAnUnavailableBookAvailable(){
+
+        biblioteca.returnBook(3);
+        Book bookReturned = getBookByReference(3);
+
+        assertTrue(bookReturned.isAvailable());
+    }
+
+    @Test
     public void  shouldReturnFalseIfBookIsAlreadyCheckout(){
 
-        biblioteca.CheckoutBook(3);
-        boolean couldChekoutBook = biblioteca.CheckoutBook(3);
+        biblioteca.checkoutBook(3);
+        boolean couldChekoutBook = biblioteca.checkoutBook(3);
 
         assertFalse(couldChekoutBook);
+    }
+
+    private Book getBookByReference(int reference){
+
+        return books.stream().
+                filter(book -> book.getReference() == reference).
+                findFirst().get();
     }
 }

@@ -28,7 +28,7 @@ public class Biblioteca {
         return books;
     }
 
-    public boolean CheckoutBook(int reference){
+    public boolean checkoutBook(int reference){
 
         Book bookToCheckout = books.stream().
                 filter(book -> book.getReference() == reference).
@@ -39,5 +39,14 @@ public class Biblioteca {
 
         bookToCheckout.setAvailable(false);
         return true;
+    }
+
+    public void returnBook(int reference){
+
+        Book bookToReturn = books.stream().
+                filter(book -> book.getReference() == reference).
+                findFirst().orElse(null);
+
+        bookToReturn.setAvailable(true);
     }
 }

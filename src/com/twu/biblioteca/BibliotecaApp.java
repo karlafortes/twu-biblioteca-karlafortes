@@ -6,12 +6,11 @@ import java.util.Scanner;
 public class BibliotecaApp {
 
     private static Biblioteca biblioteca;
+    private static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
 
         biblioteca = new Biblioteca();
-
-        Scanner scanner = new Scanner(System.in);
 
         System.out.println("Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!");
 
@@ -25,11 +24,7 @@ public class BibliotecaApp {
 
             switch(option) {
                 case 1:
-                    listBook();
-                    System.out.println("\nWould you like to checkout a book? (y/n)");
-                    String checkout = scanner.next();
-                    if(checkout.equals("y"))
-                        checkoutBook();
+                    booksListMenu();
                     break;
                 case 2:
                     break;
@@ -38,6 +33,28 @@ public class BibliotecaApp {
             }
 
         } while (option != 2);
+    }
+
+    public static void booksListMenu(){
+
+        listBook();
+
+        System.out.println("\nWhat would you like to do?\n");
+        System.out.println("\n1. Checkout a book");
+        System.out.println("2. Return a book\n");
+
+        int option = scanner.nextInt();
+
+        switch(option) {
+            case 1:
+                checkoutBook();
+                break;
+            case 2:
+                returnBook();
+                break;
+            default:
+                break;
+        }
     }
 
     public static void listBook(){
@@ -54,16 +71,21 @@ public class BibliotecaApp {
 
     public static void checkoutBook(){
 
-        Scanner scanner = new Scanner(System.in);
-
         System.out.println("\nPlease, inform the reference of the book you want to checkout:");
         int reference = scanner.nextInt();
 
-        boolean checkoutSuccess = biblioteca.CheckoutBook(reference);
+        boolean checkoutSuccess = biblioteca.checkoutBook(reference);
 
         if(checkoutSuccess)
             System.out.println("\nThank you! Enjoy the book");
         else
             System.out.println("\nSorry, that book is not available");
+    }
+
+    public static void returnBook(){
+
+        System.out.println("\nPlease, inform the reference of the book you want to return:");
+        int reference = scanner.nextInt();
+        biblioteca.returnBook(reference);
     }
 }
