@@ -7,22 +7,20 @@ public class BibliotecaApp {
 
     private static Biblioteca biblioteca;
     private static Scanner scanner = new Scanner(System.in);
+    private static Login login;
 
     public static void main(String[] args) {
 
+        login = new Login();
         biblioteca = new Biblioteca();
 
         System.out.println("Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!\n");
-        System.out.println("Please, enter your library number:\n");
-        String login = new Scanner(System.in).nextLine();
-        System.out.println("\nNow, enter your password:\n");
-        String password = new Scanner(System.in).nextLine();
 
-        if(biblioteca.isValidLogin(login, password)){
+        if(login.validatesCustomerLogin()){
             loginSuccess();
         }
         else {
-            System.out.println("\nLogin and/or password invalid!");
+            System.out.println("\nClosing Session");
         }
     }
 

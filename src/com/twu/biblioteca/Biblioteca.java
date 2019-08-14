@@ -7,7 +7,6 @@ public class Biblioteca {
 
     private List<Book> books;
     private List<Movie> movies;
-    private List<Customer> users;
 
     public Biblioteca() {
 
@@ -36,12 +35,6 @@ public class Biblioteca {
             }
         };
 
-        users = new ArrayList() {
-            {
-                add(new Customer("135791", "password"));
-                add(new Customer("135798", "pwd123"));
-            }
-        };
     }
 
     public List getBooks() {
@@ -90,9 +83,5 @@ public class Biblioteca {
         movieToCheckout.setAvailable(false);
     }
 
-    public boolean isValidLogin(String userLogin, String password){
-
-        return users.stream().anyMatch(users -> users.isLoginValid(userLogin, password));
-    }
 }
 
