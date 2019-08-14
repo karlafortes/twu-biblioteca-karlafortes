@@ -12,16 +12,30 @@ public class BibliotecaApp {
 
         biblioteca = new Biblioteca();
 
-        System.out.println("Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!");
+        System.out.println("Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!\n");
+        System.out.println("Please, enter your library number:\n");
+        String login = new Scanner(System.in).nextLine();
+        System.out.println("\nNow, enter your password:\n");
+        String password = new Scanner(System.in).nextLine();
+
+        if(biblioteca.isValidLogin(login, password)){
+            loginSuccess();
+        }
+        else {
+            System.out.println("\nLogin and/or password invalid!");
+        }
+    }
+
+    public static void loginSuccess(){
 
         int option;
 
         do {
+
             System.out.println("\nChoose the number of the option you would like to:");
             System.out.println("\n1. List all books");
             System.out.println("2. List all movies");
             System.out.println("3. Exit\n");
-
 
             option = scanner.nextInt();
 

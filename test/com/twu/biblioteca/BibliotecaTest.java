@@ -78,4 +78,16 @@ public class BibliotecaTest {
 
         assertFalse(checkedoutMovie.isAvailable());
     }
+
+    @Test
+    public void shouldReturnTrueIfLoginAndPasswordMatchesInput(){
+
+        assertTrue(biblioteca.isValidLogin("135791", "password"));
+    }
+
+    @Test
+    public void shouldReturnFalseIfLoginAndPasswordMatchesInput(){
+
+        assertFalse(biblioteca.isValidLogin("135791", "popcorn"));
+    }
 }

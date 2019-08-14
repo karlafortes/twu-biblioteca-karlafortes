@@ -7,20 +7,21 @@ public class Biblioteca {
 
     private List<Book> books;
     private List<Movie> movies;
+    private List<Customer> users;
 
     public Biblioteca() {
 
         books = new ArrayList() {
             {
                 add(new Book(1, "Artificial Intelligence: A Modern Approach", "Peter Norvig and Stuart J. Russell", "1994", true));
-                add(new Book(2, "Clean Code", "Robert Cecil Martin","2008", true));
-                add(new Book(3,"Dreamcatcher","Stephen King","2001", true));
-                add(new Book(4,"It","Stephen King", "1986", true));
-                add(new Book(5,"Paper towns", "John Green", "2008", true));
-                add(new Book(6,"Sapiens: A Brief History of Humankind", "Yuval Noah Harari", "2011", true));
-                add(new Book(7,"Test Driven Development: By Example", "Kent Beck", "2002", true));
-                add(new Book(8,"The fault in our stars", "John Green", "2012", true));
-                add(new Book(9,"The shinning", "Stephen King", "1977", true));
+                add(new Book(2, "Clean Code", "Robert Cecil Martin", "2008", true));
+                add(new Book(3, "Dreamcatcher", "Stephen King", "2001", true));
+                add(new Book(4, "It", "Stephen King", "1986", true));
+                add(new Book(5, "Paper towns", "John Green", "2008", true));
+                add(new Book(6, "Sapiens: A Brief History of Humankind", "Yuval Noah Harari", "2011", true));
+                add(new Book(7, "Test Driven Development: By Example", "Kent Beck", "2002", true));
+                add(new Book(8, "The fault in our stars", "John Green", "2012", true));
+                add(new Book(9, "The shinning", "Stephen King", "1977", true));
             }
         };
 
@@ -34,35 +35,42 @@ public class Biblioteca {
                 add(new Movie("Inception", "2010", "Christopher Nolan", 0, true));
             }
         };
+
+        users = new ArrayList() {
+            {
+                add(new Customer("135791", "password"));
+                add(new Customer("135798", "pwd123"));
+            }
+        };
     }
 
     public List getBooks() {
         return books;
     }
 
-    public Book getBookByReference(int reference){
+    public Book getBookByReference(int reference) {
 
         return books.stream().
                 filter(book -> book.getReference() == reference).
                 findFirst().orElse(null);
     }
 
-    public boolean checkoutBook(int reference){
+    public boolean checkoutBook(int reference) {
 
         Book bookToCheckout = getBookByReference(reference);
 
-        if(bookToCheckout == null || !bookToCheckout.isAvailable())
+        if (bookToCheckout == null || !bookToCheckout.isAvailable())
             return false;
 
         bookToCheckout.setAvailable(false);
         return true;
     }
 
-    public boolean returnBook(int reference){
+    public boolean returnBook(int reference) {
 
         Book bookToReturn = getBookByReference(reference);
 
-        if(bookToReturn == null || bookToReturn.isAvailable())
+        if (bookToReturn == null || bookToReturn.isAvailable())
             return false;
 
         bookToReturn.setAvailable(true);
@@ -73,7 +81,7 @@ public class Biblioteca {
         return movies;
     }
 
-    public void checkoutMovie(String name){
+    public void checkoutMovie(String name) {
 
         Movie movieToCheckout = movies.stream().
                 filter(movie -> movie.getName().toLowerCase().equals(name.toLowerCase())).
@@ -81,4 +89,10 @@ public class Biblioteca {
 
         movieToCheckout.setAvailable(false);
     }
+
+    public boolean isValidLogin(String userLogin, String password){
+
+        return users.stream().anyMatch(users -> users.isLoginValid(userLogin, password));
+    }
 }
+
