@@ -91,5 +91,7 @@ public class BibliotecaApp {
 
         if(returnSuccess)
             System.out.println("\nThank you for returning the book");
+        else
+            System.out.println("\nThat is not a valid book to return");
     }
 }
