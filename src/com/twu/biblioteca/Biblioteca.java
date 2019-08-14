@@ -6,6 +6,7 @@ import java.util.List;
 public class Biblioteca {
 
     private List<Book> books;
+    private List<Movie> movies;
 
     public Biblioteca() {
 
@@ -20,6 +21,17 @@ public class Biblioteca {
                 add(new Book(7,"Test Driven Development: By Example", "Kent Beck", "2002", true));
                 add(new Book(8,"The fault in our stars", "John Green", "2012", true));
                 add(new Book(9,"The shinning", "Stephen King", "1977", true));
+            }
+        };
+
+        movies = new ArrayList() {
+            {
+                add(new Movie("Breakfast at Tiffany's", "1961", "Blake Edwards", 7.7, true));
+                add(new Movie("Pulp Fiction", "1994", "Quentin Tarantino", 8.9, true));
+                add(new Movie("Fight Club", "1999", "David Fincher", 8.8, true));
+                add(new Movie("Forrest Gump", "1994", "Robert Zemeckis", 8.8, true));
+                add(new Movie("Matrix", "1999", "Lana Wachowski e Lilly Wachowski (as The Wachowski Brothers)", 8.7, false));
+                add(new Movie("Inception", "2010", "Christopher Nolan", 0, true));
             }
         };
     }
@@ -55,5 +67,9 @@ public class Biblioteca {
 
         bookToReturn.setAvailable(true);
         return true;
+    }
+
+    public List getMovies() {
+        return movies;
     }
 }

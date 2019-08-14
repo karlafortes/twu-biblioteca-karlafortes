@@ -15,9 +15,7 @@ public class BibliotecaTest {
     }
 
     @Test
-    public void getBook() {
-
-        Biblioteca biblioteca = new Biblioteca();
+    public void getBooks() {
 
        // assertThat(biblioteca.getBooks(), assertNotNull(biblioteca.getBooks()));
     }
@@ -57,5 +55,11 @@ public class BibliotecaTest {
         boolean couldReturnBook = biblioteca.returnBook(3);
 
         assertFalse(couldReturnBook);
+    }
+
+    @Test
+    public void getMovies() {
+
+        assertNotNull(biblioteca.getMovies());
     }
 }
