@@ -86,6 +86,10 @@ public class BibliotecaApp {
 
         System.out.println("\nPlease, inform the reference of the book you want to return:");
         int reference = scanner.nextInt();
-        biblioteca.returnBook(reference);
+
+        boolean returnSuccess = biblioteca.returnBook(reference);
+
+        if(returnSuccess)
+            System.out.println("\nThank you for returning the book");
     }
 }

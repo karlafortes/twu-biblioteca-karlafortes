@@ -28,11 +28,16 @@ public class Biblioteca {
         return books;
     }
 
-    public boolean checkoutBook(int reference){
+    public Book getBookByReference(int reference){
 
-        Book bookToCheckout = books.stream().
+        return books.stream().
                 filter(book -> book.getReference() == reference).
                 findFirst().orElse(null);
+    }
+
+    public boolean checkoutBook(int reference){
+
+        Book bookToCheckout = getBookByReference(reference);
 
         if(bookToCheckout == null || !bookToCheckout.isAvailable())
             return false;
@@ -41,12 +46,14 @@ public class Biblioteca {
         return true;
     }
 
-    public void returnBook(int reference){
+    public boolean returnBook(int reference){
 
-        Book bookToReturn = books.stream().
-                filter(book -> book.getReference() == reference).
-                findFirst().orElse(null);
+        Book bookToReturn = getBookByReference(reference);
+
+        if(bookToReturn == null || bookToReturn.isAvailable())
+            return false;
 
         bookToReturn.setAvailable(true);
+        return true;
     }
 }

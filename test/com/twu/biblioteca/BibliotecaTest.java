@@ -5,19 +5,14 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-import java.util.List;
-
 public class BibliotecaTest {
 
     private Biblioteca biblioteca;
-    private List<Book> books;
 
     @Before
     public void setUp() {
         biblioteca = new Biblioteca();
-        books = biblioteca.getBooks();
     }
-
 
     @Test
     public void getBook() {
@@ -31,7 +26,7 @@ public class BibliotecaTest {
     public void checkoutBook() {
 
         biblioteca.checkoutBook(3);
-        Book checkedoutBook = getBookByReference(3);
+        Book checkedoutBook = biblioteca.getBookByReference(3);
 
         //assertThat(checkedoutBook, not(checkedoutBook.isAvailable()));
         assertFalse(checkedoutBook.isAvailable());
@@ -41,7 +36,7 @@ public class BibliotecaTest {
     public void shouldMakeAnUnavailableBookAvailable(){
 
         biblioteca.returnBook(3);
-        Book bookReturned = getBookByReference(3);
+        Book bookReturned = biblioteca.getBookByReference(3);
 
         assertTrue(bookReturned.isAvailable());
     }
@@ -55,10 +50,12 @@ public class BibliotecaTest {
         assertFalse(couldChekoutBook);
     }
 
-    private Book getBookByReference(int reference){
+    @Test
+    public void  shouldReturnTrueIfBookIsSuccessfulReturn(){
 
-        return books.stream().
-                filter(book -> book.getReference() == reference).
-                findFirst().get();
+        biblioteca.returnBook(3);
+        boolean couldReturnBook = biblioteca.returnBook(3);
+
+        assertFalse(couldReturnBook);
     }
 }
