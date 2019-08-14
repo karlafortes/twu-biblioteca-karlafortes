@@ -28,12 +28,16 @@ public class Biblioteca {
         return books;
     }
 
-    public void CheckoutBook(int reference){
+    public boolean CheckoutBook(int reference){
 
         Book bookToCheckout = books.stream().
                 filter(book -> book.getReference() == reference).
-                findFirst().get();
+                findFirst().orElse(null);
+
+        if(bookToCheckout == null || !bookToCheckout.isAvailable())
+            return false;
 
         bookToCheckout.setAvailable(false);
+        return true;
     }
 }

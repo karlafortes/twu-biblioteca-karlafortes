@@ -39,4 +39,12 @@ public class BibliotecaTest {
         //assertThat(checkedoutBook, not(checkedoutBook.isAvailable()));
         assertFalse(checkedoutBook.isAvailable());
     }
+
+    public void  shouldReturnFalseIfBookIsAlreadyCheckout(){
+
+        biblioteca.CheckoutBook(3);
+        boolean couldChekoutBook = biblioteca.CheckoutBook(3);
+
+        assertFalse(couldChekoutBook);
+    }
 }

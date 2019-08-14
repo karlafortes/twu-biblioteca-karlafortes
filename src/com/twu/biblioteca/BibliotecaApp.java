@@ -59,8 +59,11 @@ public class BibliotecaApp {
         System.out.println("\nPlease, inform the reference of the book you want to checkout:");
         int reference = scanner.nextInt();
 
-        biblioteca.CheckoutBook(reference);
+        boolean checkoutSuccess = biblioteca.CheckoutBook(reference);
 
-        System.out.println("\nThank you! Enjoy the book");
+        if(checkoutSuccess)
+            System.out.println("\nThank you! Enjoy the book");
+        else
+            System.out.println("\nSorry, that book is not available");
     }
 }
