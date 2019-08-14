@@ -72,4 +72,13 @@ public class Biblioteca {
     public List getMovies() {
         return movies;
     }
+
+    public void checkoutMovie(String name){
+
+        Movie movieToCheckout = movies.stream().
+                filter(movie -> movie.getName().toLowerCase().equals(name.toLowerCase())).
+                findFirst().orElse(null);
+
+        movieToCheckout.setAvailable(false);
+    }
 }

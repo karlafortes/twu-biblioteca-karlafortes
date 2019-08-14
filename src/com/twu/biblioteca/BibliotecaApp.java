@@ -21,6 +21,8 @@ public class BibliotecaApp {
             System.out.println("\n1. List all books");
             System.out.println("2. List all movies");
             System.out.println("3. Exit\n");
+
+
             option = scanner.nextInt();
 
             switch(option) {
@@ -28,7 +30,7 @@ public class BibliotecaApp {
                     booksListMenu();
                     break;
                 case 2:
-                    listMovies();
+                    moviesListMenu();
                     break;
                 case 3:
                     break;
@@ -109,5 +111,31 @@ public class BibliotecaApp {
             if(movie.isAvailable())
                 System.out.printf("Name: %s | Year: %s | Director: %s | Rating: %s%n", movie.getName(), movie.getYear(), movie.getDirector(), movie.getRating());
         }
+    }
+
+    public static void moviesListMenu(){
+
+        listMovies();
+
+        System.out.println("\nWhat would you like to do?\n");
+        System.out.println("\n1. Checkout a movie\n");
+
+        int option = scanner.nextInt();
+
+        switch(option) {
+            case 1:
+                checkoutMovie();
+                break;
+            default:
+                break;
+        }
+    }
+
+    public static void checkoutMovie(){
+
+        System.out.println("\nPlease, inform the name of the movie you want to checkout:");
+        String name = new Scanner(System.in).nextLine();
+
+        biblioteca.checkoutMovie(name);
     }
 }
