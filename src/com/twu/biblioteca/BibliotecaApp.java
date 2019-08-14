@@ -26,9 +26,9 @@ public class BibliotecaApp {
             switch(option) {
                 case 1:
                     listBook();
-                    System.out.println("\nWould you like to checkout a book? (s/n)");
+                    System.out.println("\nWould you like to checkout a book? (y/n)");
                     String checkout = scanner.next();
-                    if(checkout.equals("s"))
+                    if(checkout.equals("y"))
                         checkoutBook();
                     break;
                 case 2:
@@ -60,5 +60,7 @@ public class BibliotecaApp {
         int reference = scanner.nextInt();
 
         biblioteca.CheckoutBook(reference);
+
+        System.out.println("\nThank you! Enjoy the book");
     }
 }

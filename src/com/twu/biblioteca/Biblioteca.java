@@ -31,7 +31,7 @@ public class Biblioteca {
     public void CheckoutBook(int reference){
 
         Book bookToCheckout = books.stream().
-                filter(book -> book.getReference() == 3).
+                filter(book -> book.getReference() == reference).
                 findFirst().get();
 
         bookToCheckout.setAvailable(false);
