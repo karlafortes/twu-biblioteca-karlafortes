@@ -8,10 +8,12 @@ public class Login {
 
     private List<Customer> users = new ArrayList() {
         {
-            add(new Customer("135791", "password"));
-            add(new Customer("135798", "pwd123"));
+            add(new Customer("135791", "password", "Hanna Lawrence", "hlawrence@email.com", "+1 321 3440907"));
+            add(new Customer("135798", "pwd123", "John Smith", "jsmith@email.com", "+1 344 3457327"));
         }
     };
+
+    private String userLoggedId;
 
     public Boolean validatesCustomerLogin() {
         System.out.println("Please, enter your library number:");
@@ -20,6 +22,7 @@ public class Login {
         String password = new Scanner(System.in).nextLine();
 
         if(isValidLogin(login, password)){
+            userLoggedId = login;
             return true;
         }
         else {
@@ -31,5 +34,12 @@ public class Login {
     private boolean isValidLogin(String userLogin, String password){
 
         return users.stream().anyMatch(users -> users.isLoginValid(userLogin, password));
+    }
+
+    public Customer getUserLogged() {
+
+        return users.stream().
+                filter(user -> user.getLogin().equals(userLoggedId)).
+                findFirst().orElse(null);
     }
 }

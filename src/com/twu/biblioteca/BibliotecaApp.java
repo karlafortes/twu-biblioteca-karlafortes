@@ -33,7 +33,8 @@ public class BibliotecaApp {
             System.out.println("\nChoose the number of the option you would like to:");
             System.out.println("\n1. List all books");
             System.out.println("2. List all movies");
-            System.out.println("3. Exit\n");
+            System.out.println("3. Show my user info");
+            System.out.println("4. Exit\n");
 
             option = scanner.nextInt();
 
@@ -45,12 +46,15 @@ public class BibliotecaApp {
                     moviesListMenu();
                     break;
                 case 3:
+                    displayUserInfo();
+                    break;
+                case 4:
                     break;
                 default:
                     System.out.println("\nPlease, select a valid option!");
             }
 
-        } while (option != 3);
+        } while (option != 4);
     }
 
     public static void booksListMenu(){
@@ -149,5 +153,11 @@ public class BibliotecaApp {
         String name = new Scanner(System.in).nextLine();
 
         biblioteca.checkoutMovie(name);
+    }
+
+    public static void displayUserInfo(){
+
+        Customer user = login.getUserLogged();
+        System.out.printf("\nName: %s\nEmail: %s\nPhone number:%s\n", user.getName(), user.getEmail(), user.getPhoneNumber());
     }
 }

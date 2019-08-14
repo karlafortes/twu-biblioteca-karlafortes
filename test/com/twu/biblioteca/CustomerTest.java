@@ -11,7 +11,7 @@ public class CustomerTest {
         String loginInput = "123456";
         String passwordInput = "123456";
 
-        Customer expectedCustomer = new Customer("123456", "123456");
+        Customer expectedCustomer = new Customer("123456", "123456", "", "", "");
 
         assertTrue(expectedCustomer.isLoginValid(loginInput, passwordInput));
     }
@@ -21,7 +21,7 @@ public class CustomerTest {
         String loginInput = "123456";
         String passwordInput = "ABCDEF";
 
-        Customer expectedCustomer = new Customer("123456", "123456");
+        Customer expectedCustomer = new Customer("123456", "123456", "", "", "");
 
         assertFalse(expectedCustomer.isLoginValid(loginInput, passwordInput));
     }
