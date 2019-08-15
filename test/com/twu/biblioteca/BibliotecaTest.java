@@ -3,6 +3,8 @@ package com.twu.biblioteca;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 public class BibliotecaTest {
@@ -15,9 +17,7 @@ public class BibliotecaTest {
     }
 
     @Test
-    public void getBook() {
-
-        Biblioteca biblioteca = new Biblioteca();
+    public void getBooks() {
 
        // assertThat(biblioteca.getBooks(), assertNotNull(biblioteca.getBooks()));
     }
@@ -57,5 +57,37 @@ public class BibliotecaTest {
         boolean couldReturnBook = biblioteca.returnBook(3);
 
         assertFalse(couldReturnBook);
+    }
+
+    @Test
+    public void getMovies() {
+
+        assertNotNull(biblioteca.getMovies());
+    }
+
+    @Test
+    public void checkoutMovie() {
+
+        List<Movie> movies = biblioteca.getMovies();
+
+        biblioteca.checkoutMovie("matrix");
+
+        Movie checkedoutMovie =  movies.stream().
+                filter(movie -> movie.getName().toLowerCase().equals("matrix")).
+                findFirst().orElse(null);
+
+        assertFalse(checkedoutMovie.isAvailable());
+    }
+
+    @Test
+    public void shouldReturnTrueIfLoginAndPasswordMatchesInput(){
+
+        //assertTrue(biblioteca.isValidLogin("135791", "password"));
+    }
+
+    @Test
+    public void shouldReturnFalseIfLoginAndPasswordMatchesInput(){
+
+        //assertFalse(biblioteca.isValidLogin("135791", "popcorn"));
     }
 }
